@@ -64,8 +64,8 @@ jobs:
       - name: Update stage kustomization image tag
         run: |
           sed -i 's/newTag: .*/newTag: ${{ steps.version.outputs.version_sha }}  # Updated by GitHub Action/' \
-            app/deploy/overlays/stage/kustomization.yaml
-          git add app/deploy/overlays/stage/kustomization.yaml
+            apps/kartograph/overlays/stage/kustomization.yaml
+          git add apps/kartograph/overlays/stage/kustomization.yaml
           git commit -m "chore(deploy): Update stage image to ${{ steps.version.outputs.version_sha }} [skip-release]" \
             || echo "No kustomization changes to commit"
 

@@ -1,13 +1,20 @@
-# Kartograph Deployment
+# Kartograph - Kubernetes Deployment
 
-Kubernetes deployment manifests using Kustomize.
+Kubernetes deployment manifests using Kustomize, organized following ArgoCD best practices.
 
 ## Structure
 
-- `base/` - Common resources for all environments
-- `overlays/ephemeral/` - Development/testing overlay
-- `overlays/stage/` - Staging environment (ArgoCD-managed)
-- `scripts/` - Deployment automation scripts
+```
+apps/kartograph/
+├── base/                    # Common resources for all environments
+├── overlays/
+│   ├── ephemeral/          # Development/testing overlay
+│   └── stage/              # Stage environment (ArgoCD-managed)
+├── scripts/                 # Deployment automation scripts
+└── README.md               # This file
+```
+
+For ArgoCD Application manifests, see `argocd/` directory in the repository root.
 
 ## Prerequisites
 
@@ -54,10 +61,18 @@ This will:
 
 ### Stage Environment
 
-ArgoCD manages stage automatically. For manual testing:
+ArgoCD manages stage automatically via the Application manifest at `argocd/kartograph-stage.yaml`.
+
+For manual testing:
 
 ```bash
-kubectl apply -k deploy/overlays/stage
+kubectl apply -k apps/kartograph/overlays/stage
+```
+
+To deploy the ArgoCD Application:
+
+```bash
+kubectl apply -f argocd/kartograph-stage.yaml
 ```
 
 ## Secret Management
@@ -95,7 +110,7 @@ Secrets are managed using the **Secrets Store CSI Driver** with HashiCorp Vault 
 
 **Service account:** The pod's service account must be bound to the Vault role `kartograph-stage` with appropriate policies.
 
-See: `overlays/stage/secret-provider-class.yaml`
+See: `apps/kartograph/overlays/stage/secret-provider-class.yaml`
 
 ## Image Tagging
 

@@ -76,32 +76,32 @@ deploy-ephemeral: push-local ## Deploy to ephemeral environment
 		oc delete deployment kartograph-app -n $$NAMESPACE --wait=false || true; \
 		sleep 5; \
 	fi; \
-	cp deploy/overlays/ephemeral/kustomization.yaml.template deploy/overlays/ephemeral/kustomization.yaml && \
-	cd deploy/overlays/ephemeral && \
+	cp ../apps/kartograph/overlays/ephemeral/kustomization.yaml.template ../apps/kartograph/overlays/ephemeral/kustomization.yaml && \
+	cd ../apps/kartograph/overlays/ephemeral && \
 	kustomize edit set image ghcr.io/jsell-rh/kartograph=$(LOCAL_IMAGE):$(LOCAL_IMAGE_TAG) && \
 	kustomize edit set namespace $$NAMESPACE && \
-	cd ../../.. && \
-	./deploy/scripts/create-ephemeral-secrets.sh $$NAMESPACE && \
+	cd ../../../../app && \
+	../apps/kartograph/scripts/create-ephemeral-secrets.sh $$NAMESPACE && \
 	echo "==> Creating placeholder patch for initial deployment..."; \
-	if [ ! -f deploy/overlays/ephemeral/patch-url.yaml ]; then \
-		echo "apiVersion: v1" > deploy/overlays/ephemeral/patch-url.yaml; \
-		echo "kind: ConfigMap" >> deploy/overlays/ephemeral/patch-url.yaml; \
-		echo "metadata:" >> deploy/overlays/ephemeral/patch-url.yaml; \
-		echo "  name: kartograph-config" >> deploy/overlays/ephemeral/patch-url.yaml; \
-		echo "data:" >> deploy/overlays/ephemeral/patch-url.yaml; \
-		echo "  NUXT_PUBLIC_ORIGIN: \"https://PLACEHOLDER\"" >> deploy/overlays/ephemeral/patch-url.yaml; \
-		echo "  BETTER_AUTH_TRUSTED_ORIGINS: \"https://PLACEHOLDER\"" >> deploy/overlays/ephemeral/patch-url.yaml; \
+	if [ ! -f ../apps/kartograph/overlays/ephemeral/patch-url.yaml ]; then \
+		echo "apiVersion: v1" > ../apps/kartograph/overlays/ephemeral/patch-url.yaml; \
+		echo "kind: ConfigMap" >> ../apps/kartograph/overlays/ephemeral/patch-url.yaml; \
+		echo "metadata:" >> ../apps/kartograph/overlays/ephemeral/patch-url.yaml; \
+		echo "  name: kartograph-config" >> ../apps/kartograph/overlays/ephemeral/patch-url.yaml; \
+		echo "data:" >> ../apps/kartograph/overlays/ephemeral/patch-url.yaml; \
+		echo "  NUXT_PUBLIC_ORIGIN: \"https://PLACEHOLDER\"" >> ../apps/kartograph/overlays/ephemeral/patch-url.yaml; \
+		echo "  BETTER_AUTH_TRUSTED_ORIGINS: \"https://PLACEHOLDER\"" >> ../apps/kartograph/overlays/ephemeral/patch-url.yaml; \
 	fi && \
 	echo "==> Deploying to ephemeral (includes route creation)..."; \
-	kubectl apply -k deploy/overlays/ephemeral --namespace=$$NAMESPACE && \
+	kubectl apply -k ../apps/kartograph/overlays/ephemeral --namespace=$$NAMESPACE && \
 	echo "==> Detecting route URL and patching configuration..."; \
-	./deploy/scripts/generate-ephemeral-patch.sh $$NAMESPACE && \
-	kubectl apply -k deploy/overlays/ephemeral --namespace=$$NAMESPACE
+	../apps/kartograph/scripts/generate-ephemeral-patch.sh $$NAMESPACE && \
+	kubectl apply -k ../apps/kartograph/overlays/ephemeral --namespace=$$NAMESPACE
 	@echo "==> Deployment complete! Route URL detected and patched."
 
 deploy-stage: ## Deploy to stage (for testing - ArgoCD handles production)
 	@echo "==> Deploying to stage (for testing only - ArgoCD handles production)"
-	kubectl apply -k deploy/overlays/stage
+	kubectl apply -k ../apps/kartograph/overlays/stage
 
 deploy-ephemeral-local: deploy-ephemeral ## Alias for deploy-ephemeral (backward compatibility)
 

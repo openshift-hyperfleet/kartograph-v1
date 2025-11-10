@@ -7,8 +7,8 @@ spec:
   project: default
   source:
     repoURL: https://github.com/jsell-rh/kartograph.git
-    targetRevision: feat/23-kustomize-migration
-    path: app/deploy/overlays/stage
+    targetRevision: main
+    path: apps/kartograph/overlays/stage
   destination:
     server: https://kubernetes.default.svc
     namespace: kartograph-stage

@@ -61,5 +61,5 @@ output/
 .gitmessage
 
 # Kustomize generated patches and modified files
-app/deploy/overlays/*/patch-url.yaml
-app/deploy/overlays/ephemeral/kustomization.yaml
+apps/kartograph/overlays/*/patch-url.yaml
+apps/kartograph/overlays/ephemeral/kustomization.yaml
