@@ -12,10 +12,18 @@ export interface ChangelogData {
 
 export const changelog: ChangelogData = {
   "features": [
-    "Support multiple GitHub email addresses for domain validation (#26)"
+    "Support multiple GitHub email addresses for domain validation (#26)",
+    "Add verbose tool call display (#22)",
+    "Parallel chunk processing with production-ready improvements (#19)"
   ],
-  "improvements": [],
-  "bugFixes": []
+  "improvements": [
+    "Red Hat Konflux kflux-prd-rh02 update kartograph-app (#2)",
+    "Refactor query API into testable services with dependency injection (#20)"
+  ],
+  "bugFixes": [
+    "Add DROP_ALL parameter to Makefile",
+    "Improve 413 error handling and prevent context overflow (#17)"
+  ]
 };
 
 export default changelog;
