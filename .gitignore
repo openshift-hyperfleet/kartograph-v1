@@ -59,3 +59,7 @@ extraction/working/
 .checkpoints
 output/
 .gitmessage
+
+# Kustomize generated patches and modified files
+apps/kartograph/overlays/*/patch-url.yaml
+apps/kartograph/overlays/ephemeral/kustomization.yaml
