@@ -66,7 +66,7 @@ repos:
             "-d",
             "{extends: default, rules: {line-length: {max: 120}, document-start: disable}}",
           ]
-        exclude: '^app/(\.nuxt|\.output|node_modules)/.*'
+        exclude: '^app/(\.nuxt|\.output|node_modules)/.*|^\.tekton/'
 
   # TypeScript/JavaScript formatting and linting (local hooks using project dependencies)
   - repo: local

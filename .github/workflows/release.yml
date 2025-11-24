@@ -10,10 +10,11 @@ name: Release
 jobs:
   release:
     runs-on: ubuntu-latest
-    # Skip if commit message contains [skip-release] or is a version bump
+    # Skip if commit message contains [skip-release], is a version bump, or from Konflux bot
     if: >-
       !contains(github.event.head_commit.message, '[skip-release]') &&
-      !contains(github.event.head_commit.message, 'chore(release)')
+      !contains(github.event.head_commit.message, 'chore(release)') &&
+      github.event.head_commit.author.username != 'red-hat-konflux-kflux-prd-rh02[bot]'
 
     permissions:
       contents: write
@@ -55,19 +56,15 @@ jobs:
         id: version
         run: |
           VERSION=$(node -p "require('./app/package.json').version")
-          SHORT_SHA=$(git rev-parse --short HEAD)
           echo "version=${VERSION}" >> $GITHUB_OUTPUT
           echo "tag=v${VERSION}" >> $GITHUB_OUTPUT
-          echo "short_sha=${SHORT_SHA}" >> $GITHUB_OUTPUT
-          echo "version_sha=v${VERSION}-${SHORT_SHA}" >> $GITHUB_OUTPUT
 
-      - name: Update stage kustomization image tag
+      - name: Update Dockerfile with version for Konflux
         run: |
-          sed -i 's/newTag: .*/newTag: ${{ steps.version.outputs.version_sha }}  # Updated by GitHub Action/' \
-            apps/kartograph/overlays/stage/kustomization.yaml
-          git add apps/kartograph/overlays/stage/kustomization.yaml
-          git commit -m "chore(deploy): Update stage image to ${{ steps.version.outputs.version_sha }} [skip-release]" \
-            || echo "No kustomization changes to commit"
+          VERSION="${{ steps.version.outputs.version }}"
+          sed -i "s/LABEL konflux.additional-tags=.*/LABEL konflux.additional-tags=\"${VERSION}\"/" app/Dockerfile
+          git add app/Dockerfile
+          git commit --amend --no-edit
 
       - name: Push changes and tags
         run: |
