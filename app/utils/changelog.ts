@@ -13,7 +13,9 @@ export interface ChangelogData {
 export const changelog: ChangelogData = {
   "features": [],
   "improvements": [],
-  "bugFixes": []
+  "bugFixes": [
+    "Correct ArgoCD repo URL to openshift-hyperfleet org (#4)"
+  ]
 };
 
 export default changelog;

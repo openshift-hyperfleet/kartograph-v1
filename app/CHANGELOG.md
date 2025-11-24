@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.3](https://github.com/openshift-hyperfleet/kartograph-v1/compare/v0.3.2...v0.3.3) (2025-11-24)
+
+
+### Bug Fixes
+
+* Correct ArgoCD repo URL to openshift-hyperfleet org ([#4](https://github.com/openshift-hyperfleet/kartograph-v1/issues/4)) ([ad3e92e](https://github.com/openshift-hyperfleet/kartograph-v1/commit/ad3e92e1e6db29c4cf61020e202395b35dbc46ff))
+
+
+### Chores
+
+* **release:** 0.3.2 ([28ee3be](https://github.com/openshift-hyperfleet/kartograph-v1/commit/28ee3be331aad099f5f2e4ac5157eaa063107ceb))
+
 ### [0.3.2](https://github.com/openshift-hyperfleet/kartograph-v1/compare/v0.3.1...v0.3.2) (2025-11-24)
 
 

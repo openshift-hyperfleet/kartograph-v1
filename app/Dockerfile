@@ -28,7 +28,7 @@ RUN npm run build
 FROM registry.access.redhat.com/ubi9/nodejs-20-minimal:latest
 
 # Konflux versioning - updated by release workflow
-LABEL konflux.additional-tags="0.3.2"
+LABEL konflux.additional-tags="0.3.3"
 
 USER 1001
 
