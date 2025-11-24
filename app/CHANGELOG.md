@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.2](https://github.com/openshift-hyperfleet/kartograph-v1/compare/v0.3.1...v0.3.2) (2025-11-24)
+
+
+### Chores
+
+* **deploy:** Update stage image to v0.3.1-17b8b46 [skip-release] ([6da5205](https://github.com/openshift-hyperfleet/kartograph-v1/commit/6da520510c45511cd1234c4b7739aa843339d2fa))
+* **release:** 0.3.1 ([17b8b46](https://github.com/openshift-hyperfleet/kartograph-v1/commit/17b8b46c3f7f57de39fc1a23cec9a5daecddd2bb))
+
 ### [0.3.1](https://github.com/openshift-hyperfleet/kartograph-v1/compare/v0.3.0...v0.3.1) (2025-11-24)
 
 
