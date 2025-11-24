@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/jsell-rh/kartograph.git
+    repoURL: https://github.com/openshift-hyperfleet/kartograph-v1.git
     targetRevision: main
     path: apps/kartograph/overlays/stage
   destination:
