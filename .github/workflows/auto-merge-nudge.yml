@@ -7,7 +7,7 @@ on:
 jobs:
   auto-merge:
     # Only run for PRs from Konflux bot
-    if: github.actor == 'red-hat-konflux-kflux-prd-rh02[bot]'
+    if: github.actor == 'app/red-hat-konflux-kflux-prd-rh02'
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
