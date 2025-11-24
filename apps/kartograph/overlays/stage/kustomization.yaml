@@ -15,4 +15,4 @@ patches:
 
 images:
   - name: quay.io/redhat-user-workloads/kartograph-tenant/kartograph-app
-    newTag: v0.2.5  # Updated by GitHub Action
+    newTag: v0.3.1-17b8b46  # Updated by GitHub Action

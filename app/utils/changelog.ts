@@ -11,9 +11,7 @@ export interface ChangelogData {
 }
 
 export const changelog: ChangelogData = {
-  "features": [
-    "Support multiple GitHub email addresses for domain validation (#26)"
-  ],
+  "features": [],
   "improvements": [],
   "bugFixes": []
 };
