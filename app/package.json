@@ -21,7 +21,7 @@
     "release:patch": "npm run changelog && standard-version --release-as patch && git add utils/changelog.ts && git commit --amend --no-edit"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.32.1",
+    "@anthropic-ai/sdk": "^0.71.0",
     "@anthropic-ai/vertex-sdk": "^0.14.0",
     "@modelcontextprotocol/sdk": "^1.19.1",
     "@pinia/nuxt": "^0.11.2",
